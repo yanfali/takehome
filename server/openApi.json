@@ -1,0 +1,151 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "logDNA Take Home v3",
+    "version": "1.0.0",
+    "title": "Takehome API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "yanfali@gmail.com"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "alerts",
+      "description": "alerting API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/alert/save": {
+      "post": {
+        "tags": [
+          "alerts"
+        ],
+        "summary": "Save an alert",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "alert to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Alert"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid Alert",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Something bad happened",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/alert/test": {
+      "get": {
+        "tags": [
+          "alerts"
+        ],
+        "summary": "Test saved alerts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful test",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "418": {
+            "description": "No alerts registered",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Something bad happened",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Alert": {
+      "type": "object",
+      "required": [
+        "message",
+        "frequency",
+        "emailRecipients"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "frequency": {
+          "type": "string",
+          "enum": [
+            "hourly",
+            "daily"
+          ]
+        },
+        "emailRecipients": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "email"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

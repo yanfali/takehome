@@ -1,0 +1,26 @@
+{
+  "name": "takehomeapi",
+  "description": "logDNA Take Home v3",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "fastify start index.js",
+    "test": "c8 tap test/test-*.js",
+    "dev": "fastify start -p5000 -l info -P index.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "fastify-cors": "^6.0.2",
+    "fastify-openapi-glue": "^2.4.1",
+    "fastify-plugin": "^3.0.0",
+    "fastify-swagger": "^4.13.1"
+  },
+  "devDependencies": {
+    "c8": "^7.8.0",
+    "fastify": "^3.20.2",
+    "fastify-cli": "^2.13.0",
+    "tap": "^15.0.9"
+  }
+}
