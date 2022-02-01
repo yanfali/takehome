@@ -57,7 +57,7 @@ class Service {
   //
 
   async postAlertSave(req, reply) {
-    console.log("postAlertSave", req.body);
+    req.log.info("postAlertSave", req.body);
     // openapi should have validated all the fields
     // of course in real life you would escape the text in the message just in case
     this.alerts.push(req.body);
@@ -95,11 +95,11 @@ class Service {
   //
 
   async getAlertTest(req, reply) {
-    console.log("getAlertTest", req.params);
+    req.log.info("getAlertTest", req.params);
     if (this.alerts.length === 0) {
       return reply.code(418).send('418 No alerts registered')
     }
-    console.log(this.alerts);
+    req.log.info(this.alerts);
     return { key: "value" };
   }
 }
