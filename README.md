@@ -49,7 +49,3 @@ I did not use vuex, and am just using the plain vue3 observability APIs. On larg
 Organization is bog standard Vue, with components living in components. I also deliberately chose not to use any third party component libraries, which would have made things much easier. Sometimes it's useful to know how the sausage is made.
 
 Most of the business logic is in Main.vue. I did not extract it out into it's own related files, but that would have been possible because of the composition API.
-
-## Tests
-
-No I didn't write any tests. I spent too long on this already. If I were to write tests it would probably be using cypress as e2e tests are often more useful for UI work.
