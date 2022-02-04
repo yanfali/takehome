@@ -37,7 +37,7 @@ function deleteEmailHandler($event: Event, email: string) {
         <a
           class="cursor-pointer font-extra-bold hover:text-red-600 active:text-red-800"
           title="delete"
-          @click.stop.click="deleteEmailHandler($event, email)"
+          @click.stop="deleteEmailHandler($event, email)"
           >X</a
         >
       </div>
